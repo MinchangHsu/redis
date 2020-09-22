@@ -43,7 +43,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/user/1",
+					"raw": "http://localhost:8080/user/2023",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -51,7 +51,7 @@
 					"port": "8080",
 					"path": [
 						"user",
-						"1"
+						"2023"
 					]
 				},
 				"description": "取得單一使用者資訊"
@@ -97,6 +97,35 @@
 					]
 				},
 				"description": "刪除單一使用者資訊"
+			},
+			"response": []
+		},
+		{
+			"name": "Insert single user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\":\"2022\",\n    \"userName\":\"test007\",\n    \"userPassword\":\"abcdefg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				},
+				"description": "新增單筆使用者資料"
 			},
 			"response": []
 		}
