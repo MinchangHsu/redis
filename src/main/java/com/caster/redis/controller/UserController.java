@@ -1,8 +1,10 @@
 package com.caster.redis.controller;
 
+import com.caster.redis.controller.request.InsertUserReq;
 import com.caster.redis.entity.User;
 import com.caster.redis.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -44,5 +46,12 @@ public class UserController implements Serializable {
 							   @RequestParam String name,
 							   @RequestParam String pwd) {
 		return userService.updateUserInfo(new User(Integer.parseInt(userId), name, pwd));
+	}
+
+	@PostMapping("")
+	public User findUserById(@RequestBody InsertUserReq req) {
+		User user = new User();
+		BeanUtils.copyProperties(req, user);
+		return userService.insertUser(user);
 	}
 }

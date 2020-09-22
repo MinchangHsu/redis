@@ -22,7 +22,7 @@ public class InitRedisConnRunner implements ApplicationRunner {
 	 * 所以考慮到建立連線池時會花一些時間,
 	 * 根據不同網路環境時間差會有所落差,
 	 * 所以在啟動完server 時可先觸發Redis 讓它去建立連線池,
-	 * 以利後續操作時更加順利.
+	 * 以利後續操作時更加順利. (暫時先用笨的方式解決)
 	 */
 	@Override
 	public void run(ApplicationArguments args) throws Exception {

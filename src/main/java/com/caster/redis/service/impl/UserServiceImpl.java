@@ -21,12 +21,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+	@Override
+	@CachePut(value = RedisConstants.CACHE_NAME_USER, key = "T(com.caster.redis.constants.RedisConstants).USER_INFO + '_' + #root.args[0].getUserId()")
+	public User insertUser(User user) {
+		System.out.println(String.format("塞資料進 Redis, 亦可將資料順勢塞入DB, UserId:%s", user.getUserId()));
+		// here you can insert data into db(Relational Databases) Ex.MySql, oracle .....
+		return user;
+	}
+
 	/**
 	 * Cacheable, CacheEvict, CachePut
 	 * 這三個註解,attr key 僅能使用 spring EL 的語法去撰寫.
 	 */
-
-
 	@Override
 	@Cacheable(value = RedisConstants.CACHE_NAME_USER, key = "T(com.caster.redis.constants.RedisConstants).USER_INFO + '_' + #root.args[0]")
 	public User findUserById(Integer userId) {
@@ -50,7 +56,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@CacheEvict(value = RedisConstants.CACHE_NAME_USER, key = "T(com.caster.redis.constants.RedisConstants).USER_INFO + '_' + #root.args[0]")
 	public int deleteUserById(Integer userId) {
-		return 0;
+		// here you can delete data from db(Relational Databases) Ex.MySql, oracle .....
+		return 1;
 	}
 
 	@Override
