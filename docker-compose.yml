@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  rdb:
+    image: redis:6.0.6
+    command: redis-server --requirepass cPKGpSGvky
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./redisConf/redis.conf:/etc/redis/redis.conf"
+      - "./redisConf/data:/data"
+    networks:
+      - practice
+
+networks:
+  practice:
+    driver: bridge
